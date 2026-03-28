@@ -1,0 +1,148 @@
+# ─────────────────────────────────────────────
+# GramSevak AI — Root .gitignore
+# ─────────────────────────────────────────────
+
+# ── AI assistant / planning files ────────────
+# These are internal dev/AI session artefacts — not project source
+.agents/
+agents.md
+task.md
+implementation.md
+PROJECT_STRUCTURE.md
+DOCUMENTATION.md
+*.implementation.md
+*.task.md
+
+# ── Redundant scaffold / template folders ────
+# _expo_template/ is the original Expo bootstrapping scaffold.
+# The actual deployable app is Frontend/gramsevakai-frontend/
+Frontend/_expo_template/
+
+# ── IDE & editor (full folder) ───────────────
+.vscode/
+.idea/
+
+# ── Secrets & environment ─────────────────────
+.env
+.env.*
+!.env.example          # always commit the example template
+*.pem
+*.key
+*.p12
+*.p8
+*.jks
+*.mobileprovision
+secrets/
+credentials/
+
+# ── Python virtual environments ───────────────
+.venv/
+venv/
+env/
+ENV/
+**/Backend/.venv/
+**/Backend/Backend/.venv/
+
+# ── Python runtime artifacts ──────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.whl
+
+# ── Node / React Native / Expo ────────────────
+node_modules/
+.expo/
+.expo-shared/
+expo-env.d.ts
+web-build/
+dist/
+.metro-health-check*
+*.orig.*
+*.tsbuildinfo
+.kotlin/
+
+# ── npm / yarn debug logs ─────────────────────
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log
+
+# ── iOS / Android native builds ───────────────
+ios/
+android/
+*.ipa
+*.apk
+*.aab
+
+# ── diskcache / session / runtime caches ──────
+.cache/
+**/dedup/
+**/gramsevak_sessions/
+**/session_cache/
+diskcache/
+*.db
+*.db-shm
+*.db-wal
+
+# ── Voice / audio temp files ──────────────────
+*.ogg
+*.mp3
+*.wav
+*.m4a
+*.opus
+voice_tmp/
+
+# ── IDE & editor ──────────────────────────────
+.vscode/settings.json  # only ignore personal settings
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Ngrok binaries ────────────────────────────
+ngrok.exe
+ngrok
+*.ngrok.exe.old
+.ngrok.exe.old
+
+# ── OS generated ──────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# ── Test / coverage artifacts ─────────────────
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+coverage.xml
+*.coveragerc
+
+# ── Type checking ─────────────────────────────
+.mypy_cache/
+.dmypy.json
+.pytype/
+
+# ── Build tools ───────────────────────────────
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ── antigravity / AI assistant metadata ──────
+.antigravityignore
+.gemini/
+
+Frontend

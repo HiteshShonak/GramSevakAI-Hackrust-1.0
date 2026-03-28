@@ -1,0 +1,71 @@
+# ─────────────────────────────────────────────
+# GramSevak AI — Backend/.gitignore
+# ─────────────────────────────────────────────
+
+# ── Raw / generated data (not needed at runtime) ─
+# data.json = 15MB raw scraped dataset (source for the pre-processed JSONs)
+# The server only uses schemes_verified.json, schemes_fallback.json, etc.
+database/schemes/data.json
+database/quality_report.json
+
+# ── Secrets — NEVER commit ───────────────────
+.env
+.env.*
+!.env.example
+
+# ── Python venv ───────────────────────────────
+.venv/
+venv/
+env/
+Backend/.venv/
+
+# ── Python compiled ───────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+
+# ── Bootstrap / installer tools ───────────────
+# get-pip.py is a large bootstrap script not needed in source control
+get-pip.py
+
+# ── Runtime caches (diskcache, session, dedup) ─
+.cache/
+dedup/
+gramsevak_sessions/
+session_cache/
+*.db
+*.db-shm
+*.db-wal
+
+# ── Voice temp files ──────────────────────────
+# Voice notes are downloaded, transcribed, then deleted
+# Any that leaked to disk should never be committed
+*.ogg
+*.mp3
+*.wav
+*.opus
+*.m4a
+
+# ── Log files ─────────────────────────────────
+*.log
+logs/
+
+# ── Coverage / test ───────────────────────────
+.coverage
+.pytest_cache/
+htmlcov/
+coverage.xml
+
+# ── Type checking ─────────────────────────────
+.mypy_cache/
+.pytype/
+
+# ── OS ────────────────────────────────────────
+.DS_Store
+Thumbs.db

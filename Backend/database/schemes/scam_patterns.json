@@ -1,0 +1,458 @@
+[
+  {
+    "id": "scam_001",
+    "document": "Aapka PM Kisan ka paisa ruk gaya hai technical error ki wajah se. Apna bank account aur IFSC code yahan bhejiye jisse paisa release ho sake.",
+    "metadata": {
+      "type": "data_theft",
+      "scheme_name": "PM Kisan",
+      "language": "hi",
+      "red_flags": [
+        "bank_details_on_whatsapp",
+        "impersonation",
+        "technical_error_pretext"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_002",
+    "document": "Aapko PM Ujjwala Yojana ke tahat free mobile phone milega! Is message ko 20 logo ko bhejo. Sarkar de rahi hai limited time mein.",
+    "metadata": {
+      "type": "forward_scam",
+      "scheme_name": "Fake Mobile Scheme",
+      "language": "hi",
+      "red_flags": [
+        "fake_freebie",
+        "forward_chain",
+        "no_official_source"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_003",
+    "document": "Atal Pension Yojana update: Your account needs verification. Share your APY PRAN number and Aadhaar on WhatsApp: 9988776655 for immediate processing.",
+    "metadata": {
+      "type": "data_theft",
+      "scheme_name": "Atal Pension Yojana",
+      "language": "en",
+      "red_flags": [
+        "aadhar_demand",
+        "personal_number",
+        "pran_demand",
+        "whatsapp_collection"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_004",
+    "document": "Ayushman Bharat card banwao online! Fees: Rs 250 only. Contact: 9876543210. Visit: ayushman-card-apply.online",
+    "metadata": {
+      "type": "fee_scam",
+      "scheme_name": "Ayushman Bharat",
+      "language": "en",
+      "red_flags": [
+        "ayushman_is_free",
+        "fee_demand",
+        "personal_number",
+        "unofficial_domain"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_005",
+    "document": "BREAKING: Modi ji ne announce kiya - sabke account mein 10000 aayenge! Register here: http://modi-yojana.click/claim. Limited time offer!",
+    "metadata": {
+      "type": "impersonation",
+      "scheme_name": "Fake PM scheme",
+      "language": "hi",
+      "red_flags": [
+        "pm_impersonation",
+        "unofficial_domain",
+        "unrealistic_amount",
+        "urgency"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_006",
+    "document": "Check your PM Kisan eKYC status — click this link: https://bit.ly/pmkisan-ekyc-update2024. Do it before tomorrow to avoid payment stop.",
+    "metadata": {
+      "type": "phishing",
+      "scheme_name": "PM Kisan eKYC",
+      "language": "en",
+      "red_flags": [
+        "bitly_shortened_url",
+        "payment_stop_threat",
+        "urgency"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_007",
+    "document": "Congratulations! Aapka naam PM Kisan scheme mein select hua hai. Apna 6000 rupaye lene ke liye registration fee Rs 99 pay karein: UPI 7878000000@paytm",
+    "metadata": {
+      "type": "fee_scam",
+      "scheme_name": "PM Kisan",
+      "language": "hi-en",
+      "red_flags": [
+        "pm_kisan_is_free",
+        "registration_fee",
+        "upi_payment"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_008",
+    "document": "Congratulations! You have been selected for PM Awas Yojana. Pay Rs 500 registration fee to get Rs 2.5 lakh housing grant. UPI: pmawas@ybl",
+    "metadata": {
+      "type": "fee_scam",
+      "scheme_name": "PM Awas Yojana",
+      "language": "en",
+      "red_flags": [
+        "fee_demand",
+        "unsolicited_selection",
+        "upi_payment"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_009",
+    "document": "Dear beneficiary, your DBT payment is on hold. Submit KYC by sharing your Aadhaar number, date of birth and mother's name on this WhatsApp.",
+    "metadata": {
+      "type": "data_theft",
+      "scheme_name": "DBT Generic",
+      "language": "en",
+      "red_flags": [
+        "aadhar_dob_demand",
+        "kyc_fraud",
+        "whatsapp_data_collection"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_010",
+    "document": "E-Shram card banwao ghar baithe! Sirf 200 rupaye mein. WhatsApp karein: 8765432109. Aadhar front-back photo bhejo.",
+    "metadata": {
+      "type": "fee_scam",
+      "scheme_name": "E-Shram",
+      "language": "hi",
+      "red_flags": [
+        "document_collection_on_whatsapp",
+        "eshram_is_free",
+        "fee_demand"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_011",
+    "document": "Free laptop scheme by state government! Fill form at http://free-laptop-scheme.ga/apply. Share with 5 groups to confirm your application.",
+    "metadata": {
+      "type": "forward_scam",
+      "scheme_name": "Fake Laptop Scheme",
+      "language": "en",
+      "red_flags": [
+        "share_requirement",
+        "too_good_to_be_true",
+        "unofficial_domain_ga"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_012",
+    "document": "Jan Dhan account holders ko milega 5000 ka special bonus. Missed call do: 9000000000 aur OTP share karo activate karne ke liye.",
+    "metadata": {
+      "type": "otp_scam",
+      "scheme_name": "Jan Dhan Yojana",
+      "language": "hi",
+      "red_flags": [
+        "no_official_notification",
+        "otp_demand_via_call",
+        "special_bonus_claim"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_013",
+    "document": "Kisan Credit Card limit badha di gayi hai 5 lakh tak! Activate karne ke liye apna card number aur PIN yahan bhejiye.",
+    "metadata": {
+      "type": "otp_scam",
+      "scheme_name": "Kisan Credit Card",
+      "language": "hi",
+      "red_flags": [
+        "card_pin_demand",
+        "data_theft",
+        "unsolicited_limit_increase"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_014",
+    "document": "Ladli Behna Yojana ka paisa double ho jayega agar aap ye link open karein aur apna OTP verify karein: http://ladli-behna-bonus.xyz/verify",
+    "metadata": {
+      "type": "otp_scam",
+      "scheme_name": "Ladli Behna Yojana",
+      "language": "hi",
+      "red_flags": [
+        "double_money_claim",
+        "otp_demand",
+        "unofficial_domain_xyz"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_015",
+    "document": "Mukhyamantri Kanya Utthan Yojana - 50000 ka cheque ready hai aapke naam pe. Processing fee 1000 rupaye bhejiye UPI pe jaldi karo.",
+    "metadata": {
+      "type": "fee_scam",
+      "scheme_name": "Mukhyamantri Kanya Utthan Yojana",
+      "language": "hi",
+      "red_flags": [
+        "pre_approved_claim",
+        "processing_fee",
+        "upi_payment",
+        "urgency"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_016",
+    "document": "Official message from Ministry of Agriculture: All PM Kisan beneficiaries must re-verify their bank accounts by clicking: http://pmkisan-verify.net/update",
+    "metadata": {
+      "type": "impersonation",
+      "scheme_name": "PM Kisan",
+      "language": "en",
+      "red_flags": [
+        "bank_update_pretext",
+        "ministry_impersonation",
+        "unofficial_domain_net"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_017",
+    "document": "PM Garib Kalyan Yojana ke tahat free ration register karne ke liye abhi click karein: http://pmgky-free-ration.tk/apply. OTP bhejiye.",
+    "metadata": {
+      "type": "phishing",
+      "scheme_name": "PM Garib Kalyan Yojana",
+      "language": "hi",
+      "red_flags": [
+        "otp_demand",
+        "registration_required_for_free_scheme",
+        "unofficial_domain_tk"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_018",
+    "document": "PM Kisan ka paisa aa raha hai, apna OTP yahan bhejiye taki 6000 rupaye turant milein. Click karein: http://pm-kisan-yojana.xyz/claim",
+    "metadata": {
+      "type": "otp_scam",
+      "scheme_name": "PM Kisan",
+      "language": "hi",
+      "red_flags": [
+        "otp_demand",
+        "unofficial_domain_xyz",
+        "urgency"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_019",
+    "document": "PM Ujjwala Yojana ke tahat free gas connection mil raha hai. Abhi register karein: http://ujjwala-free.tk/register Apna Aadhar number bhejiye.",
+    "metadata": {
+      "type": "fee_scam",
+      "scheme_name": "PM Ujjwala Yojana",
+      "language": "hi",
+      "red_flags": [
+        "aadhar_demand",
+        "unofficial_domain_tk",
+        "unsolicited"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_020",
+    "document": "PMJAY Ayushman card renewal ki last date hai kal! Apna Aadhar, mobile number aur bank details yahan submit karo: http://pmjay-renew.click",
+    "metadata": {
+      "type": "data_theft",
+      "scheme_name": "Ayushman Bharat PMJAY",
+      "language": "hi",
+      "red_flags": [
+        "artificial_deadline",
+        "data_collection",
+        "unofficial_domain_click"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_021",
+    "document": "Pradhan Mantri Awas Yojana — Gramin list mein aapka naam aaya hai. 2.5 lakh ka grant check karne ke liye: http://pmay-gramin-check.info/suchi",
+    "metadata": {
+      "type": "phishing",
+      "scheme_name": "PMAY Gramin",
+      "language": "hi",
+      "red_flags": [
+        "fake_beneficiary_list",
+        "unofficial_domain_info"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_022",
+    "document": "Sarkar de rahi hai 15000 rupaye har mahine! Bas ye form bharo aur bank details do. Last date aaj hi hai! Forward ye message 10 logon ko.",
+    "metadata": {
+      "type": "forward_scam",
+      "scheme_name": "Unknown",
+      "language": "hi",
+      "red_flags": [
+        "bank_details_demand",
+        "forward_chain",
+        "unrealistic_amount",
+        "urgency"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_023",
+    "document": "Sarkari Message: Aapko PM SVANIDHI loan scheme ke tahat 50000 rupaye ka loan milega. Confirm karne ke liye apna Aadhar bhejiye is number par.",
+    "metadata": {
+      "type": "impersonation",
+      "scheme_name": "PM SVANidhi",
+      "language": "hi",
+      "red_flags": [
+        "aadhar_demand",
+        "govt_impersonation",
+        "unsolicited"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_024",
+    "document": "Scholarship amount aapke account mein transfer hogi. Pehle apna NSP portal login karein is link par: http://nsp-scholarship.online/login",
+    "metadata": {
+      "type": "phishing",
+      "scheme_name": "NSP Scholarship",
+      "language": "hi",
+      "red_flags": [
+        "credential_theft",
+        "fake_portal",
+        "unofficial_domain_online"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_025",
+    "document": "Sukanya Samriddhi Yojana mein 1 lakh ka bonus mil raha hai sabko! WhatsApp pe apni details bhejo: naam, Aadhar, bank account number.",
+    "metadata": {
+      "type": "data_theft",
+      "scheme_name": "Sukanya Samriddhi Yojana",
+      "language": "hi",
+      "red_flags": [
+        "aadhar_bank_demand",
+        "unrealistic_bonus",
+        "whatsapp_collection"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_026",
+    "document": "Your MGNREGA payment of Rs 3500 is pending. Login and verify at: http://mgnrega-payment.xyz/login using your job card number.",
+    "metadata": {
+      "type": "phishing",
+      "scheme_name": "MGNREGA",
+      "language": "en",
+      "red_flags": [
+        "fake_pending_payment",
+        "job_card_demand",
+        "unofficial_domain_xyz"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_027",
+    "document": "Your Ration Card has been suspended. Click here immediately to reactivate: http://ration-update.bit.ly/verify. Enter your mobile OTP to restore access.",
+    "metadata": {
+      "type": "otp_scam",
+      "scheme_name": "PDS Ration Card",
+      "language": "en",
+      "red_flags": [
+        "bitly_link",
+        "otp_demand",
+        "suspension_threat",
+        "urgency"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_028",
+    "document": "आपका Ujjwala gas connection कट सकता है! अभी अपना Aadhaar verify करें वरना connection बंद हो जाएगा। Link: http://ujjwala-verify.site",
+    "metadata": {
+      "type": "phishing",
+      "scheme_name": "PM Ujjwala Yojana",
+      "language": "hi",
+      "red_flags": [
+        "aadhar_demand",
+        "connection_cut_threat",
+        "unofficial_domain_site",
+        "urgency"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_029",
+    "document": "किसान भाइयों को ख़ुशखबरी! PM Kisan Samman Nidhi में 2000 से बढ़कर 8000 मिलेगा। अभी register करें: http://pmkisan-8000.xyz",
+    "metadata": {
+      "type": "impersonation",
+      "scheme_name": "PM Kisan Samman Nidhi",
+      "language": "hi",
+      "red_flags": [
+        "enhanced_amount_claim",
+        "unofficial_domain_xyz",
+        "urgent_registration"
+      ]
+    },
+    "embedding": []
+  },
+  {
+    "id": "scam_030",
+    "document": "सरकार दे रही है 5 लाख का MSME loan बिना guarantee के! Apply करें: http://msme-loan-free.online और अपनी company details भेजें।",
+    "metadata": {
+      "type": "phishing",
+      "scheme_name": "MSME Loan Scam",
+      "language": "hi",
+      "red_flags": [
+        "business_data_theft",
+        "too_good_to_be_true",
+        "unofficial_domain_online"
+      ]
+    },
+    "embedding": []
+  }
+]

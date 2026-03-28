@@ -1,0 +1,7 @@
+# Local/teammate only — NOT deployed to server
+# Used for data ingestion and processing
+datasets>=2.18.0
+pandas>=2.0.0
+huggingface-hub>=0.20.0
+pypdf>=6.0.0
+sentence-transformers>=2.7.0

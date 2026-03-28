@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: gramsevak-ai
+    runtime: python
+    pythonVersion: "3.11"
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT --timeout-keep-alive 30
+    envVars:
+      - key: MEMORY_BUDGET_MB
+        value: "300"
+      - key: ENABLE_PHASE2_API
+        value: "true"
+      - key: WHATSAPP_TOKEN
+        sync: false
+      - key: WHATSAPP_PHONE_NUMBER_ID
+        sync: false
+      - key: VERIFY_TOKEN
+        sync: false
+      - key: META_APP_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: SARVAM_API_KEY
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRE_DAYS
+        value: "30"
+      - key: SESSION_CACHE_DIR
+        value: /tmp/gramsevak_sessions
+      - key: ENVIRONMENT
+        value: production
+      - key: LOG_LEVEL
+        value: INFO

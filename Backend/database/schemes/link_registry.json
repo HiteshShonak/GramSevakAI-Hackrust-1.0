@@ -1,0 +1,724 @@
+{
+  "generated_at": 1774548441,
+  "manual_only": true,
+  "links": {
+    "https://agriharyana.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429567,
+      "elapsed_ms": 907,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Crop Residue Management (CRM) Scheme – Haryana"
+        }
+      ]
+    },
+    "https://cm-psy.haryana.gov.in": {
+      "reachable": false,
+      "status_code": 0,
+      "is_gov": true,
+      "checked_at_ms": 1774548429580,
+      "elapsed_ms": 10016,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Mukhyamantri Parivar Samridhi Yojana (MMPSY)"
+        }
+      ]
+    },
+    "https://ddugky.gov.in": {
+      "reachable": false,
+      "status_code": 0,
+      "is_gov": true,
+      "checked_at_ms": 1774548429581,
+      "elapsed_ms": 10016,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY)"
+        }
+      ]
+    },
+    "https://dfpd.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429581,
+      "elapsed_ms": 453,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Garib Kalyan Anna Yojana (PMGKAY)"
+        }
+      ]
+    },
+    "https://ebooking.hrtransport.gov.in/": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429582,
+      "elapsed_ms": 343,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Antyodaya Parivar Parivahan Yojana (HAPPY Scheme)"
+        }
+      ]
+    },
+    "https://enps.nps-proteantech.in/eNPS/ApySubRegistration.html": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": false,
+      "checked_at_ms": 1774548429582,
+      "elapsed_ms": 671,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Atal Pension Yojana (APY)"
+        }
+      ]
+    },
+    "https://eshram.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429582,
+      "elapsed_ms": 483,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "e-SHRAM Card Registration (National Unorganised Worker Database)"
+        }
+      ]
+    },
+    "https://fasal.haryana.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429583,
+      "elapsed_ms": 141,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Bhavantar Bharpai Yojana (BBY)"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Mera Pani Meri Virasat – Crop Diversification Scheme"
+        }
+      ]
+    },
+    "https://hareda.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429583,
+      "elapsed_ms": 375,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Solar Water Pump Scheme"
+        }
+      ]
+    },
+    "https://haryanascbc.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429583,
+      "elapsed_ms": 218,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Kanyadan Scheme (SC/BC Marriage Grant)"
+        }
+      ]
+    },
+    "https://hfa.haryana.gov.in/": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429583,
+      "elapsed_ms": 280,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Mukhyamantri Awas Yojana"
+        }
+      ]
+    },
+    "https://hortnet.hortharyana.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429583,
+      "elapsed_ms": 280,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Integrated Horticulture Development Scheme (IHD)"
+        }
+      ]
+    },
+    "https://hreyahs.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429584,
+      "elapsed_ms": 141,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Saksham Yojana"
+        }
+      ]
+    },
+    "https://hrylabour.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429584,
+      "elapsed_ms": 405,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana BOCW – Construction Worker Registration & Welfare (HBOCWWB)"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Labour Welfare Board Schemes (Organised/Semi-organised Workers)"
+        }
+      ]
+    },
+    "https://jansuraksha.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429584,
+      "elapsed_ms": 266,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Jeevan Jyoti Bima Yojana (PMJJBY)"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Suraksha Bima Yojana (PMSBY)"
+        }
+      ]
+    },
+    "https://msme.haryana.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429584,
+      "elapsed_ms": 250,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Enterprises and Employment Policy (HEEP) 2020 – Interest Subsidy for MSME"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Gramin Udyogik Vikas Yojana (H-GUVY)"
+        }
+      ]
+    },
+    "https://nfsa.gov.in/portal/apply_ration_card": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429725,
+      "elapsed_ms": 530,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "National Food Security Act – Subsidised Ration"
+        }
+      ]
+    },
+    "https://nrega.nic.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429726,
+      "elapsed_ms": 108,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "MGNREGA – Mahatma Gandhi National Rural Employment Guarantee"
+        }
+      ]
+    },
+    "https://nsap.nic.in": {
+      "reachable": false,
+      "status_code": 0,
+      "is_gov": true,
+      "checked_at_ms": 1774548429798,
+      "elapsed_ms": 15,
+      "error": "[Errno 11001] getaddrinfo failed",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "National Social Assistance Programme – Widow Pension (IGNWPS)"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "National Social Assistance Programme – Disability Pension (IGNDPS)"
+        }
+      ]
+    },
+    "https://pashudhanharyana.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429810,
+      "elapsed_ms": 500,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Pashu Kisan Credit Card (PKCC)"
+        }
+      ]
+    },
+    "https://pashudhanharyana.gov.in/schemes": {
+      "reachable": false,
+      "status_code": 0,
+      "is_gov": true,
+      "checked_at_ms": 1774548430401,
+      "elapsed_ms": 11062,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Piggery Development Scheme"
+        }
+      ]
+    },
+    "https://pension.socialjusticehry.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429842,
+      "elapsed_ms": 217,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Old Age Samman Allowance"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Widow and Destitute Women Allowance"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Divyang (Disability) Pension"
+        }
+      ]
+    },
+    "https://pmayg.nic.in": {
+      "reachable": false,
+      "status_code": 0,
+      "is_gov": true,
+      "checked_at_ms": 1774548429849,
+      "elapsed_ms": 30,
+      "error": "[Errno 11001] getaddrinfo failed",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Awas Yojana (Gramin) - PMAY-G"
+        }
+      ]
+    },
+    "https://pmaymis.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429855,
+      "elapsed_ms": 907,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Pradhan Mantri Awas Yojana – Urban (PMAY-U)"
+        }
+      ]
+    },
+    "https://pmfby.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429862,
+      "elapsed_ms": 485,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Fasal Bima Yojana (PMFBY)"
+        }
+      ]
+    },
+    "https://pmjay.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429886,
+      "elapsed_ms": 750,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Ayushman Bharat PM-JAY"
+        }
+      ]
+    },
+    "https://pmjdy.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429928,
+      "elapsed_ms": 2156,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Jan Dhan Yojana (PMJDY)"
+        }
+      ]
+    },
+    "https://pmkisan.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429952,
+      "elapsed_ms": 4266,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Kisan Samman Nidhi"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Kisan Credit Card (KCC)"
+        }
+      ]
+    },
+    "https://pmksy.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548429989,
+      "elapsed_ms": 453,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Krishi Sinchai Yojana"
+        }
+      ]
+    },
+    "https://pmmvy.wcd.gov.in/": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430036,
+      "elapsed_ms": 125,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Pradhan Mantri Matru Vandana Yojana (PMMVY)"
+        }
+      ]
+    },
+    "https://pmsvanidhi.mohua.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430059,
+      "elapsed_ms": 546,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM SVANidhi – Street Vendor Micro-Credit Scheme"
+        }
+      ]
+    },
+    "https://pmuy.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430061,
+      "elapsed_ms": 296,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Ujjwala Yojana"
+        }
+      ]
+    },
+    "https://pmvishwakarma.gov.in": {
+      "reachable": false,
+      "status_code": 0,
+      "is_gov": true,
+      "checked_at_ms": 1774548430165,
+      "elapsed_ms": 11234,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Vishwakarma Yojana"
+        }
+      ]
+    },
+    "https://saralharyana.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430250,
+      "elapsed_ms": 62,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Mini Dairy Unit Scheme (2–10 Milch Animals)"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "HBOCWWB Maternity Benefit Scheme (Women Construction Workers)"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "HBOCWWB Paternity Benefit Scheme (Male Construction Workers)"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "HBOCWWB Pension Scheme (Construction Worker Pension)"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "HBOCWWB Education Assistance for Children of Construction Workers"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "HBOCWWB Tool Kit, Cycle and Sewing Machine Schemes"
+        }
+      ]
+    },
+    "https://saralharyana.gov.in/": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430839,
+      "elapsed_ms": 312,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Aapki Beti Hamari Beti Scheme"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Pran Vaayu Devta Pension Scheme"
+        }
+      ]
+    },
+    "https://scholarships.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430315,
+      "elapsed_ms": 4453,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "National Scholarship Portal (NSP) Scholarships"
+        }
+      ]
+    },
+    "https://schooleducationharyana.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430319,
+      "elapsed_ms": 328,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Chirag Scheme (Private School Fees for EWS)"
+        }
+      ]
+    },
+    "https://soilhealth.dac.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430341,
+      "elapsed_ms": 702,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Soil Health Card Scheme"
+        }
+      ]
+    },
+    "https://startupharyana.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430364,
+      "elapsed_ms": 328,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Startup Policy 2022 – Seed Grant and Subsidies"
+        }
+      ]
+    },
+    "https://wcd.nic.in": {
+      "reachable": false,
+      "status_code": 0,
+      "is_gov": true,
+      "checked_at_ms": 1774548430438,
+      "elapsed_ms": 10016,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Beti Bachao Beti Padhao"
+        }
+      ]
+    },
+    "https://wcdhry.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430468,
+      "elapsed_ms": 1280,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Mukhyamantri Doodh Uphaar Yojana"
+        },
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Haryana Ladli Scheme"
+        }
+      ]
+    },
+    "https://www.indiapost.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430613,
+      "elapsed_ms": 235,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Sukanya Samriddhi Yojana (SSY)"
+        }
+      ]
+    },
+    "https://www.kviconline.gov.in/pmegpeportal": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430637,
+      "elapsed_ms": 578,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PMEGP – Prime Minister's Employment Generation Programme"
+        }
+      ]
+    },
+    "https://www.mudra.org.in,UdyamiMitra": {
+      "reachable": false,
+      "status_code": 0,
+      "is_gov": false,
+      "checked_at_ms": 1774548430643,
+      "elapsed_ms": 0,
+      "error": "[Errno 11001] getaddrinfo failed",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "PM Mudra Loan (Shishu/Kishore/Tarun)"
+        }
+      ]
+    },
+    "https://www.nabard.org": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": false,
+      "checked_at_ms": 1774548430650,
+      "elapsed_ms": 342,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Dairy Entrepreneurship Development Scheme (DEDS) – NABARD/Central"
+        }
+      ]
+    },
+    "https://www.skillindia.gov.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": true,
+      "checked_at_ms": 1774548430683,
+      "elapsed_ms": 234,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Skill India – PMKVY"
+        }
+      ]
+    },
+    "https://www.standupmitra.in": {
+      "reachable": true,
+      "status_code": 200,
+      "is_gov": false,
+      "checked_at_ms": 1774548430771,
+      "elapsed_ms": 7437,
+      "error": "",
+      "sources": [
+        {
+          "source_tier": "manual_verified",
+          "scheme_name": "Stand Up India Scheme"
+        }
+      ]
+    }
+  }
+}
