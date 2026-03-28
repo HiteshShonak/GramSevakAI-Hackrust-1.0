@@ -90,8 +90,9 @@ IMPLICIT_RULES = [
     (["mahila", "महिला", "woman", "female", "aurat", "औरत", "stree"], {"gender": "female"}),
     (["purush", "पुरुष", "male", "aadmi"], {"gender": "male"}),
 
-    # Elderly
-    (["vridh", "वृद्ध", "budhapa", "बुढ़ापा", "pension", "elderly", "senior citizen", "old age"],
+    # Elderly — only personal self-descriptors, NOT scheme-name vocabulary
+    # ('pension' removed: it appears in scheme names like 'Atal Pension Yojana')
+    (["vridh", "वृद्ध", "budhapa", "बुढ़ापा", "elderly", "senior citizen", "old age", "budhape mein"],
      {"occupation": "elderly"}),
 ]
 

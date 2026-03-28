@@ -87,18 +87,48 @@ async def run_scheme_search(phone: str, session: dict, user_message: str = ""):
     profile = clean_profile_for_search(session["profile"])
     user_state = profile.get("state") or None
 
-    # Detect specific scheme queries — MUST be before _build_search_query
     msg_lower = (user_message or "").lower()
-    _SPECIFIC_SCHEME_SIGNALS = (
-        "nsp", "pm kisan", "pmay", "ayushman", "ujjwala", "mudra", "sukanya",
-        "fasal bima", "kcc", "pension", "scholarship", "mgnrega", "nrega",
-        "awas", "ration", "jan dhan", "pm vishwakarma", "startup india",
-        "stand up", "ladli", "स्कॉलरशिप", "छात्रवृत्ति", "पेंशन", "आवास",
-        "किसान", "बीमा", "योजना", "scheme", "yojana", "yojna",
-        "tell me about", "ke baare mein", "batao", "bataiye", "बताओ", "बताइए",
+
+    # ── Mode 1: NAMED scheme query ─────────────────────────────────────────
+    # User explicitly names a scheme → show it regardless of their occupation/caste.
+    _NAMED_SCHEME_SIGNALS = (
+        # Specific scheme acronyms and names — unambiguously referring to a single scheme
+        "nsp", "pm kisan", "pmkisan", "pmay", "ayushman", "ujjwala", "mudra",
+        "sukanya", "fasal bima", "kcc", "mgnrega", "nrega", "jan dhan",
+        "pm vishwakarma", "startup india", "stand up india", "ladli",
+        # Specific compound phrases that name a scheme
+        "national scholarship", "scholarship portal", "atal pension",
+        "kisan credit card", "pm svamitva", "e-shram card", "jan aushadhi",
+        # Hindi/Hinglish compound names (NOT generic single words like किसान/पेंशन)
+        "स्कॉलरशिप पोर्टल", "छात्रवृत्ति पोर्टल", "राष्ट्रीय छात्रवृत्ति",
+        # Named-query patterns — only with a scheme name before/after
+        "ke baare mein", "baare mein batao", "tell me about",
     )
-    is_specific = any(signal in msg_lower for signal in _SPECIFIC_SCHEME_SIGNALS)
-    enforce_elig = not is_specific
+    is_specific = any(signal in msg_lower for signal in _NAMED_SCHEME_SIGNALS)
+
+    # ── Mode 2: PERSONAL discovery ─────────────────────────────────────────
+    # User wants schemes matching THEIR profile → enforce eligibility strictly.
+    # "mere baare mein schemes batao", "mujhe kaun si milegi", "mere liye" etc.
+    _PERSONAL_SIGNALS = (
+        "mere liye", "mujhe", "meri eligibility", "main eligible",
+        "mere baare mein", "mere baare", "kaun si scheme milegi",
+        "kya mujhe milega", "kya main", "kya me ",
+        "मेरे लिए", "मुझे", "मेरे बारे में", "मेरे बारे",
+        "मुझे कौन सी", "क्या मुझे", "मेरी पात्रता",
+    )
+    is_personal = any(signal in msg_lower for signal in _PERSONAL_SIGNALS)
+
+    # ── Eligibility enforcement logic ─────────────────────────────────────
+    # Named scheme asked → never enforce (user asked for specific info)
+    # Personal discovery → always enforce (user wants schemes matching them)
+    # General discovery → enforce (default, uses profile naturally)
+    if is_specific and not is_personal:
+        enforce_elig = False   # "NSP ke baare mein batao" → show NSP regardless
+    else:
+        enforce_elig = True    # "mere liye schemes" or general → filter by profile
+
+    log.info("[%s] Query mode — is_specific=%s is_personal=%s enforce_elig=%s",
+             phone, is_specific, is_personal, enforce_elig)
 
     raw_query = _build_search_query(profile, user_message, specific_query=is_specific)
     query = expand_query(raw_query)
@@ -123,29 +153,68 @@ async def run_scheme_search(phone: str, session: dict, user_message: str = ""):
 
     # For specific scheme queries, also try exact name/title matching
     # across ALL datasets (name, description, tags, id)
+    # NOTE: profile is intentionally NOT passed here — if a user explicitly names
+    # a scheme (e.g. "NSP ke baare mein batao"), show it regardless of their occupation/caste.
     if is_specific:
-        exact_results = find_exact_scheme(user_message or query, n=SEARCH_RESULTS_CAP, profile=profile)
+        exact_results = find_exact_scheme(user_message or query, n=SEARCH_RESULTS_CAP, profile=None)
         if exact_results:
-            # Merge exact matches at the front, deduplicated
+            # Exact matches go to the FRONT of visible — always show what user asked for
             seen_keys = set()
-            merged: list[dict] = []
-            for s in exact_results + verified_results + fallback_results:
+            exact_high = []   # exact matches that are verified
+            exact_low = []    # exact matches that are fallback tier
+            for s in exact_results:
                 key = canonical_scheme_key(str(s.get("name") or s.get("id") or ""))
                 if key and key not in seen_keys:
                     seen_keys.add(key)
-                    merged.append(s)
-            verified_results = [s for s in merged if s.get("confidence") == "high"]
-            fallback_results = [s for s in merged if s.get("confidence") != "high"]
+                    if s.get("confidence") == "high":
+                        exact_high.append(s)
+                    else:
+                        exact_low.append(s)
+
+            # Append unseen BM25 supplementary results to their respective tiers
+            for s in verified_results:
+                key = canonical_scheme_key(str(s.get("name") or s.get("id") or ""))
+                if key and key not in seen_keys:
+                    seen_keys.add(key)
+                    exact_high.append(s)
+            for s in fallback_results:
+                key = canonical_scheme_key(str(s.get("name") or s.get("id") or ""))
+                if key and key not in seen_keys:
+                    seen_keys.add(key)
+                    exact_low.append(s)
+
+            # Exact matches lead — verified exact first, then fallback exact, then BM25 remainder
+            verified_results = exact_high
+            fallback_results = exact_low
+
 
     verified_results = _sort_by_state_priority(verified_results, user_state, tier="high")
     fallback_results = _sort_by_state_priority(fallback_results, user_state, tier="low")
     verified_results = _dedupe_scheme_list(verified_results)
     fallback_results = _dedupe_scheme_list(fallback_results)
 
-    visible = verified_results[:INITIAL_SCHEMES_LIMIT]
-    if len(visible) < INITIAL_SCHEMES_LIMIT:
-        visible += fallback_results[: max(INITIAL_SCHEMES_LIMIT - len(visible), 0)]
-    visible = _dedupe_scheme_list(visible)
+    # ── Cap visible based on query type ──────────────────────────────────────
+    # Named specific scheme query with a strong exact match → show ONLY that 1 scheme.
+    # User asked for "NSP", they want NSP — not NSP + 2 random related schemes.
+    has_strong_exact_match = (
+        is_specific and not is_personal
+        and (verified_results or fallback_results)
+        and ((verified_results and verified_results[0].get("_exact_match"))
+             or (fallback_results and fallback_results[0].get("_exact_match")))
+    )
+
+    if has_strong_exact_match:
+        # Single scheme info mode — pick the best exact match
+        top = (verified_results[0] if verified_results and verified_results[0].get("_exact_match")
+               else fallback_results[0])
+        top["_single_scheme_view"] = True  # flag for formatter
+        visible = [top]
+        log.info("[%s] Single-scheme info mode: %s (exact_match=True)", phone, top.get("name"))
+    else:
+        visible = verified_results[:INITIAL_SCHEMES_LIMIT]
+        if len(visible) < INITIAL_SCHEMES_LIMIT:
+            visible += fallback_results[: max(INITIAL_SCHEMES_LIMIT - len(visible), 0)]
+        visible = _dedupe_scheme_list(visible)
 
     all_results = _dedupe_scheme_list(verified_results + fallback_results)
     relaxed_notice = ""
@@ -199,14 +268,17 @@ async def run_scheme_search(phone: str, session: dict, user_message: str = ""):
     )
     is_eligibility_question = any(s in msg_lower for s in _ELIGIBILITY_SIGNALS)
 
-    # ── LLM eligibility enrichment logic ──
-    # Case 1: User explicitly asks "am I eligible?" → always run LLM check
-    # Case 2: Specific scheme info query ("batao", "ke baare mein") → skip enrichment, show clean info
-    # Case 3: General discovery with rich profile (3+ signals) → run enrichment
+    # ── LLM eligibility enrichment logic ─────────────────────────────────
+    # Aligned with the 3-mode detection above:
+    # - Named scheme only (is_specific, not is_personal) → SKIP: user wants info, not eligibility judgment
+    # - Personal discovery (is_personal) → ALWAYS RUN: user explicitly wants "schemes for me"
+    # - Eligibility question ("am I eligible?") → ALWAYS RUN
+    # - General discovery with 3+ profile signals → RUN
     from database.vector_store import _profile_signal_count
     run_llm_enrichment = (
-        is_eligibility_question
-        or (not is_specific and _profile_signal_count(profile) >= 3)
+        is_personal                                                       # "mere liye schemes batao"
+        or is_eligibility_question                                        # "am I eligible for NSP?"
+        or (not is_specific and _profile_signal_count(profile) >= 3)     # rich-profile general discovery
     )
 
     if run_llm_enrichment and len(visible) > 0:

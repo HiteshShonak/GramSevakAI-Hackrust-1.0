@@ -126,10 +126,32 @@ def _contains_any(text: str, phrases: tuple[str, ...]) -> bool:
     return any(phrase in lowered for phrase in phrases)
 
 
+_DANGEROUS_PHRASES = (
+    "otp", "click here", "click link", "registration fee", "processing fee",
+    "forward this", "share with", "bank details", "aadhar send", "send aadhar",
+    "pay now", "upi", "paytm", "limited time", "last date aaj", "jaldi karo",
+    "bit.ly", "tinyurl", ".xyz", ".tk", ".ml", ".click", ".online",
+)
+
+
+def _is_safe_description(text: str) -> bool:
+    """Return False if raw description contains scam-adjacent language."""
+    lower = text.lower()
+    return not any(phrase in lower for phrase in _DANGEROUS_PHRASES)
+
+
 def _fallback_eligibility_text(scheme: dict, language: str) -> str:
-    """Shorten raw DB eligibility/description into one readable line."""
+    """Shorten raw DB eligibility/description into one readable line.
+    
+    Sanitizes out any scam-adjacent text before display — fallback DB entries
+    can sometimes contain promotional / misleading language.
+    """
     raw = _clean(scheme.get("eligibility")) or _clean(scheme.get("description"))
     if not raw:
+        return ""
+
+    # Safety gate: never display descriptions that contain scam-adjacent phrases
+    if not _is_safe_description(raw):
         return ""
 
     raw = re.sub(r"\s+", " ", raw)

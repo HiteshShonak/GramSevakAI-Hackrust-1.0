@@ -19,11 +19,17 @@ This bot handles TWO things: government scheme discovery AND scam detection.
 Classify the user message into SCOPE + INTENT.
 
 ━━━ SCOPE ━━━
-IN_SCOPE  → anything about government schemes, scams, or user profile answers
-OUT_OF_SCOPE → everything else (weather, cricket, jokes, general chat, etc.)
+IN_SCOPE  → anything about government schemes, scams, or user profile info
+OUT_OF_SCOPE → everything else (weather, cricket, jokes, general chat, recipes, etc.)
 
 ━━━ INTENTS ━━━
-SCHEME_DISCOVERY  — user wants to find/know about government schemes
+SCHEME_DISCOVERY  — user wants schemes, OR is sharing personal details (state, job, land, income,
+                    age, caste, family, BPL status, disability, gender, marital status, aadhar,
+                    bank account). ANY personal fact = SCHEME_DISCOVERY.
+                    Examples: "mere paas 1 acre zameen hai", "main SC hoon", "meri umar 45 saal hai",
+                    "main BPL card wala hoon", "meri income 1 lakh hai", "mere 4 log hain ghar mein",
+                    "meri beti hai", "main disabled hoon", "Rajasthan mein rehta hoon",
+                    "main kisan hoon", "mujhe schemes chahiye", "koi yojana hai?"
 SCHEME_FOLLOWUP   — user asking about a SPECIFIC scheme already discussed
                     Examples: "iske documents kya chahiye?", "isme kitna milta hai?",
                     "uska form kahan milega?", "PM Kisan ke baare mein aur batao"
@@ -39,8 +45,15 @@ SCAM_FOLLOWUP     — user asking a follow-up about a scam verdict just given
                     "aur kya check karu?", "official site kya hai?"
                     Only if the bot JUST gave a scam verdict
 MORE_RESULTS      — wants more schemes (aur dikhao, more, next)
-FOLLOWUP_ANSWER   — answering a profile question the bot asked (state, caste, age, etc.)
+FOLLOWUP_ANSWER   — answering a profile question the bot asked, OR updating/correcting a detail
+                    Examples: "Haryana", "haan BPL hoon", "nahi disability nahi hai",
+                    "mera state change karo Rajasthan", "occupation update karo farmer",
+                    "ab main 50 saal ka hoon", "meri zameen 2 acre hai ab"
 PROFILE_SUMMARY   — user asks what details/profile info the bot knows about them
+                    Examples: "tell about me", "my profile", "meri details", "mera profile dikhao"
+                    Hindi: "मेरी जानकारी", "मेरी डिटेल्स दिखाओ", "मेरा प्रोफाइल"
+                    NOT: "mere baare mein schemes batao" → that is SCHEME_DISCOVERY
+                    NOT: "mujhe mere liye koi yojana batao" → that is SCHEME_DISCOVERY
 CLARIFICATION     — very short reply ("haan", "ok", "theek hai") with no new request
 GREETING          — hello/namaste/hi/hiiii/hellooo/hey only, no specific request
 OUT_OF_SCOPE      — use ONLY when scope is OUT_OF_SCOPE
@@ -53,6 +66,9 @@ OUT_OF_SCOPE      — use ONLY when scope is OUT_OF_SCOPE
 - "iske", "uska", "isme", "ye wala" after scheme results → SCHEME_FOLLOWUP
 - "asli link kya hai", "official site" after scam verdict → SCAM_FOLLOWUP
 - "tell about me", "my profile", "मेरे बारे में", "मेरी जानकारी" → PROFILE_SUMMARY
+- ANY message sharing personal facts (land, income, caste, age, BPL, disability, occupation,
+  state, district, family size, gender) → IN_SCOPE SCHEME_DISCOVERY. NEVER OUT_OF_SCOPE.
+- "update karo", "change karo", "correct karo" + a profile field → FOLLOWUP_ANSWER
 - Session state={session_state}, last bot message="{last_bot_message}"
 Recent conversation:
 {history_context}

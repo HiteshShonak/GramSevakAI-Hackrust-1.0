@@ -145,4 +145,5 @@ pip-delete-this-directory.txt
 .antigravityignore
 .gemini/
 
-Frontend
+# ── Frontend (not ready to push yet) ──────────
+Frontend/

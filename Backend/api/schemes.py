@@ -26,6 +26,24 @@ _ROOT = Path(__file__).resolve().parent.parent
 _LINK_REGISTRY_PATH = _ROOT / "database" / "schemes" / "link_registry.json"
 _GOV_LINK_RE = re.compile(r"\.(gov\.in|nic\.in)(/|$)", re.I)
 
+# Named-scheme signals — same set as scheme_discovery.py, used to disable eligibility enforcement
+# when user explicitly names a scheme (e.g. "NSP", "PM Kisan", "Scholarship portal")
+_NAMED_SCHEME_SIGNALS = (
+    # Scheme acronyms/short names
+    "nsp", "pm kisan", "pmkisan", "pmay", "ayushman", "ujjwala", "mudra",
+    "sukanya", "fasal bima", "kcc", "mgnrega", "nrega", "jan dhan",
+    "pm vishwakarma", "startup india", "stand up india", "ladli",
+    # English category names typed alone as search queries
+    "scholarship", "pension", "housing scheme", "insurance scheme",
+    "kisan credit", "jan aushadhi", "atal pension", "pm svamitva",
+    "e-shram", "swayam", "diksha", "pmjdy",
+    # Hindi/Hinglish
+    "स्कॉलरशिप", "छात्रवृत्ति", "पेंशन", "आवास", "किसान", "बीमा",
+    # Named-query patterns
+    "scholarship portal", "national scholarship",
+    "ke baare mein", "baare mein batao", "tell me about",
+)
+
 
 def _load_link_registry() -> dict[str, dict]:
     """Load preverified link reachability map from disk."""
@@ -212,26 +230,56 @@ async def search(
     phone: str = Depends(get_current_user),
     x_app_language: str = Header(default=""),
 ):
-    """Search schemes using the same data-safe retrieval rules as WhatsApp."""
+    """Search schemes using the same data-safe retrieval rules as WhatsApp.
+
+    If the query names a specific scheme (NSP, PM Kisan, PMAY etc.),
+    eligibility enforcement is disabled and the exact scheme is placed first.
+    For general profile-based discovery, eligibility is enforced normally.
+    """
     session = await load_session(phone)
     profile = dict(session.get("profile", {}))
     overrides = request.model_dump(exclude_none=True, exclude={"query", "page", "per_page"})
     profile.update(overrides)
 
     query_text = (request.query or "").strip()
-    parts = [
-        query_text,
-        profile.get("occupation") or "",
-        profile.get("state") or "",
-        "BPL below poverty line" if profile.get("is_bpl") else "",
-        "disabled divyang" if profile.get("is_disabled") else "",
-    ]
-    base_query = " ".join(part for part in parts if part).strip() or "government welfare schemes India"
-    query = vector_store.expand_query(base_query)
+    query_lower = query_text.lower()
+
+    # ── Named scheme detection ─────────────────────────────────────
+    is_named_scheme_query = bool(query_text) and any(
+        signal in query_lower for signal in _NAMED_SCHEME_SIGNALS
+    )
 
     per_page = max(1, min(request.per_page, 5))
     total_fetch = max(request.page, 1) * per_page + per_page
-    all_results = vector_store.search_schemes(query, n=total_fetch, profile=profile)
+
+    if is_named_scheme_query:
+        # Exact-match mode: find the named scheme from ALL datasets, no eligibility filter
+        exact = vector_store.find_exact_scheme(query_text, n=total_fetch, profile=None)
+        seen_keys = {vector_store.canonical_scheme_key(str(s.get("name") or s.get("id") or "")) for s in exact}
+        # Fill remaining slots with general BM25 (no eligibility, no profile)
+        if len(exact) < total_fetch:
+            bm25 = vector_store.search_schemes(vector_store.expand_query(query_text), n=total_fetch, profile=None)
+            for s in bm25:
+                key = vector_store.canonical_scheme_key(str(s.get("name") or s.get("id") or ""))
+                if key not in seen_keys:
+                    exact.append(s)
+                    seen_keys.add(key)
+                    if len(exact) >= total_fetch:
+                        break
+        all_results = exact
+    else:
+        # General discovery: profile-aware BM25 with eligibility enforcement
+        parts = [
+            query_text,
+            profile.get("occupation") or "",
+            profile.get("state") or "",
+            "BPL below poverty line" if profile.get("is_bpl") else "",
+            "disabled divyang" if profile.get("is_disabled") else "",
+        ]
+        base_query = " ".join(part for part in parts if part).strip() or "government welfare schemes India"
+        query = vector_store.expand_query(base_query)
+        all_results = vector_store.search_schemes(query, n=total_fetch, profile=profile)
+
     serialized_results = [_serialize_scheme(item) for item in all_results]
 
     start = max(request.page - 1, 0) * per_page

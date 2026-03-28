@@ -76,12 +76,32 @@ def _hash_message(msg: str) -> str:
     return hashlib.sha256(normalized.encode()).hexdigest()
 
 
+_SCAM_ADJACENT = ("otp", "click here", "registration fee", "processing fee",
+                  "forward", "bank details", "bit.ly", "tinyurl", ".xyz", ".tk")
+
+
+def _is_clean_scheme_text(text: str) -> bool:
+    low = text.lower()
+    return not any(p in low for p in _SCAM_ADJACENT)
+
+
 def _build_scheme_context(schemes: list[dict]) -> str:
-    """Build safe scheme context without leaking suspicious tiny amounts."""
+    """Build safe scheme context for LLM prompt — real scheme DB data only.
+    
+    Sanitizes raw descriptions to prevent fallback DB noise from contaminating
+    the scam detection prompt with scam-adjacent language.
+    """
     lines = []
     for scheme in schemes:
         amount = get_safe_amount_display(scheme)[0] or "verify official amount"
-        lines.append(f"- {scheme.get('name', '')}: {amount} - {scheme.get('description', '')}")
+        desc = (scheme.get("description") or scheme.get("search_text") or "")[:120].strip()
+        # Never pass scam-adjacent text into the scam detection LLM
+        if desc and not _is_clean_scheme_text(desc):
+            desc = ""
+        line = f"- {scheme.get('name', '')}: {amount}"
+        if desc:
+            line += f" - {desc}"
+        lines.append(line)
     return "\n".join(lines)
 
 

@@ -1283,7 +1283,7 @@ def find_exact_scheme(query: str, n: int = 5, profile: dict | None = None) -> li
 
     # Fill remaining with BM25 alternatives
     if len(results) < n:
-        bm25_results = search_schemes(query, n=n, profile=profile)
+        bm25_results = search_schemes(query, n=n, profile=None)  # no profile — user named this scheme explicitly
         for s in bm25_results:
             sid = s.get("id", s.get("name", ""))
             key = canonical_scheme_key(sid)
@@ -1361,14 +1361,20 @@ def search_schemes(
 
 
 def search_scam_patterns(query: str, n: int = 3) -> list[dict]:
-    """Search scam patterns by BM25 keyword similarity."""
+    """Search scam patterns by BM25 keyword similarity.
+    
+    Only returns patterns with a meaningful score (> 0) to avoid injecting
+    irrelevant scam examples into the LLM prompt for every scheme query.
+    """
     if not _scam_bm25 or not _scam_patterns:
         return []
     tokens = _tokenize(query)
     if not tokens:
         return []
     scores = _scam_bm25.get_scores(tokens)
-    ranked = sorted(zip(_scam_patterns, scores), key=lambda x: -x[1])
+    MIN_SCAM_SCORE = 0.1  # must have at least some keyword overlap
+    ranked = [(s, score) for s, score in zip(_scam_patterns, scores) if score >= MIN_SCAM_SCORE]
+    ranked.sort(key=lambda x: -x[1])
     return [s for s, _ in ranked[:n]]
 
 

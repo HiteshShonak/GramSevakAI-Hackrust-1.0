@@ -208,6 +208,13 @@ def mark_bonus_asked(profile: dict) -> dict:
 
 
 def clean_profile_for_search(profile: dict) -> dict:
-    """Remove internal tracking fields before passing to BM25 search."""
-    internal_keys = {"_bonus_asked", "_bonus_questions_asked"}
+    """Remove internal tracking flags before passing to BM25 search or LLM.
+    
+    These keys are runtime-only and must never leak into search queries
+    or be stored as user profile fields.
+    """
+    internal_keys = {
+        "_bonus_asked", "_bonus_questions_asked",
+        "_family_asked", "_profile_summary_shown", "_single_scheme_view",
+    }
     return {k: v for k, v in profile.items() if k not in internal_keys}

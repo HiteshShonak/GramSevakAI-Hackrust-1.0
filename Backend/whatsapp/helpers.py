@@ -100,13 +100,9 @@ def profile_display_rows(profile: dict, language: str) -> list[tuple[str, str]]:
         add(rows, "आय", f"₹{int(profile['income']):,}/साल")
     if profile.get("land"):
         add(rows, "जमीन", f"{profile['land']} एकड़")
-    add(rows, "आधार", "है" if profile.get("has_aadhar") is True else "नहीं है" if profile.get("has_aadhar") is False else None)
-    add(
-        rows,
-        "बैंक खाता",
-        "है" if profile.get("has_bank_account") is True else "नहीं है" if profile.get("has_bank_account") is False else None,
-    )
-    add(rows, "BPL", "हाँ" if profile.get("is_bpl") is True else "नहीं" if profile.get("is_bpl") is False else None)
+    add(rows, "आधार", "है" if profile.get("has_aadhar") is True else "नहीं" if profile.get("has_aadhar") is False else None)
+    add(rows, "बैंक खाता", "है" if profile.get("has_bank_account") is True else "नहीं" if profile.get("has_bank_account") is False else None)
+    add(rows, "BPL परिवार", "हाँ" if profile.get("is_bpl") is True else "नहीं" if profile.get("is_bpl") is False else None)
     add(rows, "दिव्यांग", "हाँ" if profile.get("is_disabled") is True else "नहीं" if profile.get("is_disabled") is False else None)
     add(rows, "अल्पसंख्यक", "हाँ" if profile.get("is_minority") is True else "नहीं" if profile.get("is_minority") is False else None)
     return rows
@@ -171,10 +167,93 @@ async def send_profile_update_confirmation(
     new_fields: dict,
     searching: bool = False,
 ):
-    """Acknowledge newly learned user details with a compact full-profile snapshot."""
+    """Acknowledge newly learned user details — highlight what changed + full profile snapshot."""
     if not new_fields:
         return
-    await send_profile_summary(phone, session, searching=searching)
+
+    language = session.get("language", "hi")
+
+    # ── Build "what changed" summary ────────────────────────────────────────
+    occupation_labels = {
+        "farmer": ("किसान 🌾", "Farmer 🌾"),
+        "labour": ("मज़दूर 🛠️", "Labourer 🛠️"),
+        "student": ("छात्र 🎓", "Student 🎓"),
+        "women": ("महिला 👩", "Woman 👩"),
+        "elderly": ("बुजुर्ग 👴", "Senior citizen 👴"),
+        "business": ("व्यापारी 💼", "Business owner 💼"),
+        "other": ("अन्य", "Other"),
+    }
+    gender_labels = {
+        "male":   ("पुरुष", "Male"),
+        "female": ("महिला", "Female"),
+        "other":  ("अन्य", "Other"),
+    }
+    marital_labels = {
+        "married":   ("विवाहित", "Married"),
+        "unmarried": ("अविवाहित", "Unmarried"),
+        "widowed":   ("विधवा/विधुर", "Widowed"),
+        "divorced":  ("तलाकशुदा", "Divorced"),
+    }
+    field_names_hi = {
+        "name": "नाम", "state": "राज्य", "district": "जिला", "occupation": "काम",
+        "age": "उम्र", "gender": "लिंग", "caste": "जाति वर्ग", "marital_status": "वैवाहिक स्थिति",
+        "family_size": "परिवार", "income": "आय", "land": "जमीन",
+        "is_bpl": "BPL परिवार", "is_disabled": "दिव्यांग", "has_aadhar": "आधार",
+        "has_bank_account": "बैंक खाता", "is_minority": "अल्पसंख्यक",
+    }
+    field_names_en = {
+        "name": "Name", "state": "State", "district": "District", "occupation": "Work",
+        "age": "Age", "gender": "Gender", "caste": "Category", "marital_status": "Marital status",
+        "family_size": "Family", "income": "Income", "land": "Land",
+        "is_bpl": "BPL family", "is_disabled": "Disability", "has_aadhar": "Aadhar",
+        "has_bank_account": "Bank account", "is_minority": "Minority",
+    }
+
+    def _format_value(key: str, val) -> str:
+        idx = 1 if language == "en" else 0
+        if key == "occupation":
+            return occupation_labels.get(str(val).lower(), (str(val), str(val)))[idx]
+        if key == "gender":
+            return gender_labels.get(str(val).lower(), (str(val), str(val)))[idx]
+        if key == "marital_status":
+            return marital_labels.get(str(val).lower(), (str(val), str(val)))[idx]
+        if key == "age":
+            return f"{val} {'years' if language == 'en' else 'साल'}"
+        if key == "family_size":
+            return f"{val} {'members' if language == 'en' else 'सदस्य'}"
+        if key == "income":
+            return f"₹{int(val):,}/{'year' if language == 'en' else 'साल'}"
+        if key == "land":
+            return f"{val} {'acres' if language == 'en' else 'एकड़'}"
+        if key == "caste":
+            return str(val).upper()   # SC/OBC/ST/General — same in both languages
+        if isinstance(val, bool):
+            return ("Yes" if val else "No") if language == "en" else ("हाँ" if val else "नहीं")
+        return str(val)
+
+    field_names = field_names_en if language == "en" else field_names_hi
+    changed_lines = [
+        f"  ✅ *{field_names.get(k, k)}:* {_format_value(k, v)}"
+        for k, v in new_fields.items()
+        if v is not None and k in field_names
+    ]
+
+    if language == "en":
+        header = "📝 *Got it! I've updated your details:*"
+        search_note = "\n🔍 Searching schemes for you..." if searching else ""
+    else:
+        header = "📝 *समझ गया! आपकी जानकारी अपडेट कर दी:*"
+        search_note = "\n🔍 अब आपके लिए योजनाएं खोज रहा हूं..." if searching else ""
+
+    if changed_lines:
+        update_msg = header + "\n" + "\n".join(changed_lines) + search_note
+    else:
+        update_msg = header + search_note
+
+    if language not in {"hi", "en"}:
+        update_msg = await _translate_if_needed(session, update_msg)
+
+    await send_session_text(phone, session, update_msg, persist=not searching)
 
 
 async def handle_clear_data(phone: str, session: dict):
