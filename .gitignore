@@ -144,6 +144,3 @@ pip-delete-this-directory.txt
 # ── antigravity / AI assistant metadata ──────
 .antigravityignore
 .gemini/
-
-# ── Frontend (not ready to push yet) ──────────
-Frontend/

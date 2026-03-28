@@ -1,0 +1,49 @@
+# ─────────────────────────────────────────────
+# GramSevak AI — Frontend/gramsevakai-frontend/.gitignore
+# ─────────────────────────────────────────────
+
+# ── Secrets ───────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Dependencies ──────────────────────────────
+node_modules/
+
+# ── Expo ──────────────────────────────────────
+.expo/
+.expo-shared/
+expo-env.d.ts
+dist/
+web-build/
+.metro-health-check*
+
+# ── Native build output ───────────────────────
+ios/
+android/
+.kotlin/
+*.ipa
+*.apk
+*.aab
+
+# ── Native signing / certs ────────────────────
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+
+# ── Build artifacts ───────────────────────────
+*.orig.*
+*.tsbuildinfo
+
+# ── Debug logs ────────────────────────────────
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log
+
+# ── OS ────────────────────────────────────────
+.DS_Store
+Thumbs.db
