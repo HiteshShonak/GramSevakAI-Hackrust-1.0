@@ -1,6 +1,6 @@
 import type { ExpoConfig } from "expo/config";
 
-const projectId = process.env.EXPO_PUBLIC_EAS_PROJECT_ID;
+const projectId = process.env.EXPO_PUBLIC_EAS_PROJECT_ID || "6e465d45-cfac-488e-8b89-4759913de489";
 
 const config: ExpoConfig = {
   name: "GramSevak AI",
